@@ -5,8 +5,7 @@
 -->
 
 <!--
-  --  Project Properties
-  --
+  Project Properties
   -->
 <!ELEMENT qgis (title, extent, projectlayers, mapunits) >
 <!ELEMENT projectlayers (maplayer*) >
@@ -24,15 +23,15 @@
   >
 <!ATTLIST projectlayers layercount CDATA #REQUIRED >
 <!--
-  --  General Map Layer Properties
-  --  (apply to both vector and raster)
+  General Map Layer Properties
+  (apply to both vector and raster)
   -->
-<!ELEMENT maplayer (layername, datasource, classificationattribute*, (singlesymbol|singlemarker|graduatedsymbol|continuoussymbol|graduatedmarker|rasterproperties) >
+<!ELEMENT maplayer (layername, datasource, classificationattribute*, (singlesymbol|singlemarker|graduatedsymbol|continuoussymbol|graduatedmarker|rasterproperties)) >
 <!ELEMENT layername (#PCDATA) >
 <!ELEMENT datasource (#PCDATA) >
 <!--  Attribute Lists -->
 <!--Raster : flag indicating whether the layer should be represented in overview or not -->
-<!ELEMENT  showInOverviewFlag>
+<!ELEMENT  showInOverviewFlag (#PCDATA) >
 <!-- Attribute lists -->
 <!ATTLIST showInOverViewFlag boolean (1|0|true|false) "false">
 <!ATTLIST maplayer
@@ -41,8 +40,7 @@
 	>
 
 <!--
-  --  Element symbol contains the settings for a qpainter
-  --
+  Element symbol contains the settings for a qpainter
   -->
 
 <!ELEMENT symbol (lowervalue, uppervalue, label,
@@ -69,8 +67,7 @@ outlinecolor,outlinestyle,outlinewidth,fillcolor,fillpattern) >
 	>
 
 <!--
-  --  elements to store the settings of the different symbology types
-  --
+  elements to store the settings of the different symbology types
   -->
 
 <!ELEMENT singlesymbol (symbol) >
@@ -85,28 +82,27 @@ outlinecolor,outlinestyle,outlinewidth,fillcolor,fillpattern) >
 <!ELEMENT highestsymbol (symbol) >
 
 <!--
-  --  Raster Layer Properties
-  --
+  Raster Layer Properties
   -->
 <!ELEMENT rasterproperties (showDebugOverlayFlag, showGrayAsColorFlag, invertHistogramFlag, stdDevsToPlotDouble, transparencyLevelInt, redBandNameQString, greenBandNameQString, blueBandNameQString, grayBandNameQString) >
 <!--Raster flag to indicate whether debug infor overlay should be rendered onto the raster -->
-<!ELEMENT  showDebugOverlayFlag>
+<!ELEMENT  showDebugOverlayFlag (#PCDATA) >
 <!--Raster : the rendering style to be used for this layer -->
- <!ELEMENT drawingStyle (#CDATA)>
+<!ELEMENT drawingStyle (#PCDATA)>
 <!--Raster : flag indicating whether the histogram should be inverted or not -->
-<!ELEMENT  invertHistogramFlag>
+<!ELEMENT  invertHistogramFlag (#PCDATA) >
 <!--Raster : Number of stddev to plot (0) to ignore -->
-<!ELEMENT  stdDevsToPlotDouble>
+<!ELEMENT  stdDevsToPlotDouble (#PCDATA) >
 <!--Raster transparency for this layer should be 0-255 -->
-<!ELEMENT transparencyLevelInt>
+<!ELEMENT transparencyLevelInt (#PCDATA) >
 <!--Raster : the band to be associated with the color red - usually red -->
- <!ELEMENT redBandNameQString (#CDATA)>
+ <!ELEMENT redBandNameQString (#PCDATA)>
 <!--Raster : the band to be associated with the color green - usually green -->
-<!ELEMENT  greenBandNameQString (#CDATA)>
+<!ELEMENT  greenBandNameQString (#PCDATA)>
 <!--Raster : the band to be associated with the color blue - usually blue -->
-<!ELEMENT  blueBandNameQString (#CDATA)>
+<!ELEMENT  blueBandNameQString (#PCDATA)>
 <!--Raster :  the band to be associated with the grayscale only output - usually gray  -->
-<!ELEMENT grayBandNameQString (#CDATA)>
+<!ELEMENT grayBandNameQString (#PCDATA)>
 <!--  Attribute Lists -->
 <!ATTLIST showDebugOverlayFlag boolean (1|0|true|false) "false">	
 <!ATTLIST invertHistogramFlag boolean (1|0|true|false) "false">
@@ -114,22 +110,20 @@ outlinecolor,outlinestyle,outlinewidth,fillcolor,fillpattern) >
 <!ATTLIST transparencyLevelInt value CDATA "0">
 
 <!--
-  --  Legend
-  --
+  Legend
   -->
 
 <!ELEMENT legend (legendgroup* | legendlayer*) >
-<!ATTLIST legend open (1|0|true|false) "false"> #open or closed
+<!ATTLIST legend open (1|0|true|false) "false">
 <!ELEMENT legendgroup (legendlayer*) >
-<!ATTLIST legendgroup open (1|0|true|false) "false" name CDATA checked (Qt::Checked|Qt::Unchecked|Qt::PartiallyChecked) "Qt::Checked">
-<!ELEMENT legendlayer (legendsymbologyitem+, legendlayerfilegroup>
+<!ATTLIST legendgroup open (1|0|true|false) "false" name CDATA "" checked (Qt::Checked|Qt::Unchecked|Qt::PartiallyChecked) "Qt::Checked">
+<!ELEMENT legendlayer (legendsymbologyitem+, legendlayerfilegroup) >
 <!ATTLIST legendlayer open (1|0|true|false) "false" checked (Qt::Checked|Qt::Unchecked|Qt::PartiallyChecked) "Qt::Checked"> 
 <!ELEMENT legendlayerfilegroup (legendlayerfile*) >
-<!ATTLIST legendlayerfilegroup open (1|0|true|false) "false" > #open or closed
-<!ATTLIST legendlayerfilegroup hidden(1|0|true|false) "false"> #hidden or shown
-<!ELEMENT legendlayerfile>
-<!ATTLIST legendlayerfile id CDATA> #unique layer id of the associated layer
-<!ATTLIST legendlayerfile open (1|0|true|false) "false"> #open or closed
-<!ELEMENT legendsymbologyitem>
-<!ATTLIST legendsymbologyitem open (1|0|true|false) "false"> #open or closed
-
+<!ATTLIST legendlayerfilegroup open (1|0|true|false) "false" >
+<!ATTLIST legendlayerfilegroup hidden (1|0|true|false) "false">
+<!ELEMENT legendlayerfile (#PCDATA) >
+<!ATTLIST legendlayerfile id CDATA "" >
+<!ATTLIST legendlayerfile open (1|0|true|false) "false" >
+<!ELEMENT legendsymbologyitem (#PCDATA) >
+<!ATTLIST legendsymbologyitem open (1|0|true|false) "false" >
